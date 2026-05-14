@@ -8,5 +8,10 @@
     "file": "images/ice.jpg",
     "photographer": "Dave Meckler",
     "url": "https://unsplash.com/@phosphorvs"
+  },
+  {
+    "file": "images/beach.jpg",
+    "photographer": "James Coleman",
+    "url": "https://unsplash.com/@jhc"
   }
 ]
