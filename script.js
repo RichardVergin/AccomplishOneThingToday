@@ -1,4 +1,8 @@
+const DEBUG = false;
+
 const STORAGE_KEY = "aott_history";
+const TODAY_KEY = "aott_today";
+const BG_KEY = "aott_background";
 const COOLDOWN_DAYS = 5;
 
 const feedbackMessages = [
@@ -51,8 +55,18 @@ function randomFeedback() {
 }
 
 function setDailyBackground(backgrounds) {
-  const dayIndex = Math.floor(Date.now() / 86400000) % backgrounds.length;
-  const bg = backgrounds[dayIndex];
+  let bg;
+  if (DEBUG) {
+    bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  } else {
+    const stored = JSON.parse(localStorage.getItem(BG_KEY));
+    if (stored?.date === todayString()) {
+      bg = stored.bg;
+    } else {
+      bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      localStorage.setItem(BG_KEY, JSON.stringify({ date: todayString(), bg }));
+    }
+  }
   document.body.style.backgroundImage = `url('${bg.file}')`;
   const attribution = document.getElementById("attribution");
   attribution.innerHTML = `Photo by <a href="${bg.url}" target="_blank" rel="noopener">${bg.photographer}</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>`;
@@ -77,7 +91,7 @@ async function init() {
   const btnEl = document.getElementById("check-btn");
   const feedbackEl = document.getElementById("feedback");
 
-  const existing = todaysEntry();
+  const existing = !DEBUG && todaysEntry();
 
   if (existing) {
     activityEl.textContent = existing.activity;
@@ -88,7 +102,11 @@ async function init() {
     return;
   }
 
-  const chosen = pickActivity(activities);
+  const stored = !DEBUG && JSON.parse(localStorage.getItem(TODAY_KEY));
+  const chosen = stored?.date === todayString()
+    ? stored.activity
+    : pickActivity(activities);
+  if (!DEBUG) localStorage.setItem(TODAY_KEY, JSON.stringify({ date: todayString(), activity: chosen }));
   activityEl.textContent = chosen;
 
   btnEl.addEventListener("click", () => {

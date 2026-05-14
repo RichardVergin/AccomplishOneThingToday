@@ -70,6 +70,7 @@ body::before {
   color: #2d2d2d;
   margin-bottom: 40px;
   min-height: 66px;
+  white-space: pre-line;
 }
 
 .check-btn {
