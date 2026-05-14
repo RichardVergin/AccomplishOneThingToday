@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #2d3a2e;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #2d2d2d;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+.attribution {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  z-index: 2;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.attribution a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: #faf4ec;
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a89f97;
+  margin-bottom: 24px;
+}
+
+.activity {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #2d2d2d;
+  margin-bottom: 40px;
+  min-height: 66px;
+}
+
+.check-btn {
+  background: none;
+  border: 3px solid #c8b8a2;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-bottom: 32px;
+}
+
+.check-btn:hover {
+  border-color: #7cba8a;
+  background-color: #f0faf2;
+}
+
+.check-btn.done {
+  border-color: #7cba8a;
+  background-color: #7cba8a;
+}
+
+.check-btn svg {
+  width: 36px;
+  height: 36px;
+  stroke: #c8b8a2;
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+}
+
+.check-btn:hover svg {
+  stroke: #7cba8a;
+}
+
+.check-btn.done svg {
+  stroke: #fff;
+}
+
+.feedback {
+  font-size: 16px;
+  color: #7cba8a;
+  font-weight: 500;
+  min-height: 24px;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.feedback.visible {
+  opacity: 1;
+}
+
+.already-done {
+  font-size: 15px;
+  color: #a89f97;
+  line-height: 1.6;
+}
+
+.already-done strong {
+  color: #7cba8a;
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
